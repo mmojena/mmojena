@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="530" viewBox="0 0 1200 530" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">Miguel Mojena — Criador e fundador</title>
+  <desc id="desc">Ideias que ganham forma. Sites, landing pages e produtos digitais. Identidade MM sobre um desenho de construção em grafite e verde.</desc>
+  <defs>
+    <pattern id="grid" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M44 0H0V44" stroke="#252D2D" stroke-width=".7"/></pattern>
+    <linearGradient id="shade" x1="708" y1="50" x2="1200" y2="450" gradientUnits="userSpaceOnUse"><stop stop-color="#202929"/><stop offset="1" stop-color="#111719"/></linearGradient>
+    <style>
+      text {font-family:Arial,Helvetica,sans-serif}
+      .construction {stroke-dasharray:1100;stroke-dashoffset:0;animation:draw 3s ease-out both}
+      @keyframes draw {from{stroke-dashoffset:1100}to{stroke-dashoffset:0}}
+      @media(prefers-reduced-motion:reduce){.construction{animation:none}}
+    </style>
+  </defs>
+  <rect width="1200" height="530" rx="12" fill="#111719"/>
+  <path d="M738 0H1188Q1200 0 1200 12V518Q1200 530 1188 530H738Z" fill="url(#shade)"/>
+  <path d="M738 0H1188Q1200 0 1200 12V518Q1200 530 1188 530H738Z" fill="url(#grid)"/>
+  <path d="M738 0V530" stroke="#303A39"/>
+  <rect x="52" y="48" width="8" height="8" fill="#B8FF2C"/>
+  <text x="72" y="59" font-size="17" fill="#C0C9C6">mmojena / criador e fundador</text>
+  <text x="48" y="170" font-size="87" font-weight="700" letter-spacing="-4.5" fill="#F2F4EF">Miguel</text>
+  <text x="48" y="258" font-size="87" font-weight="700" letter-spacing="-4.5" fill="#F2F4EF">Mojena.</text>
+  <text x="52" y="328" font-size="30" fill="#F2F4EF" letter-spacing="-.5">Ideias que ganham forma.</text>
+  <text x="52" y="371" font-size="19" fill="#ADBAB4">Sites, landing pages e produtos digitais.</text>
+  <path d="M52 426H685" stroke="#36413C"/>
+  <text x="52" y="465" font-size="16" fill="#ADBAB4">Criação, tecnologia e negócios.</text>
+  <text x="685" y="465" font-size="16" text-anchor="end" fill="#B8FF2C">Conheça meu trabalho ↗</text>
+  <g stroke="#566851" stroke-width="1" fill="none" class="construction">
+    <path d="M814 96V429M1102 96V429M788 135H1128M788 395H1128"/>
+    <path d="M798 119L1118 411M798 411L1118 119"/>
+    <circle cx="958" cy="265" r="177"/>
+    <path d="M945 88H971M958 75V101M945 442H971M958 429V455"/>
+  </g>
+  <g transform="translate(828 135) scale(2.6)">
+    <path d="M0 0h24l26 28L76 0h24v100H76V38L50 66 24 38v62H0z" fill="#F2F4EF"/>
+    <path d="M0 0h10l90 90v10H90L0 10z" fill="#192122"/>
+    <rect x="80" y="80" width="20" height="20" fill="#B8FF2C"/>
+  </g>
+  <circle cx="814" cy="135" r="4" fill="#B8FF2C"/>
+  <circle cx="1102" cy="395" r="4" fill="#B8FF2C"/>
+</svg>
