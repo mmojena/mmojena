@@ -6,9 +6,6 @@
     <linearGradient id="shade" x1="708" y1="50" x2="1200" y2="450" gradientUnits="userSpaceOnUse"><stop stop-color="#202929"/><stop offset="1" stop-color="#111719"/></linearGradient>
     <style>
       text {font-family:Arial,Helvetica,sans-serif}
-      .construction {stroke-dasharray:1100;stroke-dashoffset:0;animation:draw 3s ease-out both}
-      @keyframes draw {from{stroke-dashoffset:1100}to{stroke-dashoffset:0}}
-      @media(prefers-reduced-motion:reduce){.construction{animation:none}}
     </style>
   </defs>
   <rect width="1200" height="530" rx="12" fill="#111719"/>

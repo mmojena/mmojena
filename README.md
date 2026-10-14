@@ -1,5 +1,8 @@
 <a href="https://mmojena.github.io/MiguelMojena/">
-  <img src="assets/header.svg" width="100%" alt="Miguel Mojena. Criador e fundador. Ideias que ganham forma. Sites, landing pages e produtos digitais." />
+  <picture>
+    <source media="(prefers-reduced-motion: reduce)" srcset="assets/header.svg" />
+    <img src="assets/header-motion.gif" width="100%" alt="Miguel Mojena. Criador e fundador. Ideias que ganham forma. Símbolo MM animado, com traços que ganham preenchimento e um ponto de luz em órbita." />
+  </picture>
 </a>
 
 <p align="center">
