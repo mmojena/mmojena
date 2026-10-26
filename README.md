@@ -76,9 +76,7 @@ Aqui você encontra parte do que estou construindo. No [meu portfólio](https://
 
 <p>Site para apresentar assessoria de marketing e posicionamento, com serviços, projetos e contato contextual pelo WhatsApp.<br /><a href="https://ana-stradiotto.vercel.app/"><strong>Ver o site de Ana ↗</strong></a></p>
 
-### Vamos dar forma à próxima ideia?
-
-Sites institucionais, landing pages e produtos digitais. O ponto de partida é entender o que você quer colocar no mundo.
+<br />
 
 <a href="https://wa.me/5566999772519">
   <picture>
