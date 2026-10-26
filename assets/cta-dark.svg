@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="340" viewBox="0 0 1200 340" fill="none" role="img" aria-labelledby="t d">
+<title id="t">Vamos dar forma à próxima ideia?</title>
+<desc id="d">Convite para conversar pelo WhatsApp sobre sites, landing pages e produtos digitais.</desc>
+<style>
+text{font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+
+.in{animation:in 1s cubic-bezier(.2,.7,.2,1) both}
+@keyframes in{from{opacity:0;transform:translateY(24px)}}
+.grow{transform-box:fill-box;transform-origin:left;animation:grow 1.4s cubic-bezier(.6,0,.2,1) .6s both}
+@keyframes grow{from{transform:scaleX(0)}}
+.halo{transform-box:fill-box;transform-origin:center;animation:halo 2.8s ease-out 1.5s infinite}
+@keyframes halo{from{opacity:.55;transform:scale(1)}to{opacity:0;transform:scale(1.12,1.5)}}
+.nudge{animation:nudge 2.4s ease-in-out 1.5s infinite}
+@keyframes nudge{50%{transform:translateX(6px)}}
+</style>
+<defs><pattern id="g" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" stroke="#1B2324"/></pattern>
+<linearGradient id="f" x1="1200" x2="500" gradientUnits="userSpaceOnUse"><stop stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<mask id="gm"><rect width="1200" height="340" fill="url(#f)"/></mask></defs>
+<rect x=".5" y=".5" width="1199" height="339" rx="19.5" fill="#0E1314" stroke="#273130"/>
+<rect x="1" y="1" width="1198" height="338" rx="19" fill="url(#g)" mask="url(#gm)"/>
+<g class="in">
+<rect x="56" y="56" width="10" height="10" fill="#B8FF2C"/>
+<text class="mono" x="80" y="66" font-size="17" fill="#9DABA5">próximo projeto</text>
+<text x="50" y="152" font-size="66" font-weight="700" letter-spacing="-3" fill="#F2F4EF">Vamos dar forma</text>
+<text x="50" y="228" font-size="66" font-weight="700" letter-spacing="-3" fill="#F2F4EF">à próxima ideia<tspan fill="#B8FF2C">?</tspan></text>
+</g>
+<path class="grow" d="M56 270H600" stroke="#273130"/>
+<text class="in mono" style="animation-delay:.3s" x="56" y="304" font-size="16" fill="#9DABA5">sites · landing pages · produtos digitais</text>
+<g class="in" style="animation-delay:.5s">
+<rect class="halo" x="790" y="146" width="340" height="72" rx="36" stroke="#B8FF2C" stroke-width="2"/>
+<rect x="790" y="146" width="340" height="72" rx="36" fill="#B8FF2C"/>
+<text x="830" y="191" font-size="24" font-weight="700" fill="#111719">Chamar no WhatsApp <tspan class="nudge">→</tspan></text>
+</g>
+</svg>
