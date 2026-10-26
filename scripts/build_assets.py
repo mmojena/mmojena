@@ -7,6 +7,7 @@ As animações ficam em CSS dentro de cada SVG, porque o GitHub exibe SVG via <i
 prefers-reduced-motion apenas desliga as animações.
 """
 import base64
+import random
 import struct
 from pathlib import Path
 
@@ -62,28 +63,57 @@ def svg(w, h, title, desc, css, body):
 
 
 def hero(t):
+    rnd = random.Random(7)  # partículas determinísticas: o SVG não muda a cada build
+    dots = "".join(
+        f'<circle class="pt" cx="{rnd.uniform(740, 1180):.0f}" cy="600" r="{rnd.choice((1.5, 2, 2.5, 3))}" '
+        f'fill="{t["accent"] if i % 3 else t["mute"]}" '
+        f'style="animation-duration:{rnd.uniform(7, 13):.1f}s;animation-delay:-{rnd.uniform(0, 13):.1f}s"/>'
+        for i in range(22))
     css = """
 .up{animation:up 1s cubic-bezier(.2,.7,.2,1) both}
-@keyframes up{from{opacity:0;transform:translateY(36px)}}
-.draw{stroke-dasharray:1;animation:draw 2.4s cubic-bezier(.6,0,.2,1) both}
+@keyframes up{from{opacity:0;transform:translateY(30px)}}
+.show{animation:show .01s linear both}
+@keyframes show{from{opacity:0}}
+.bar{transform-box:fill-box;transform:scaleX(0);animation:bar 1s cubic-bezier(.7,0,.2,1) both}
+@keyframes bar{0%{transform:scaleX(0);transform-origin:left}45%{transform:scaleX(1);transform-origin:left}55%{transform:scaleX(1);transform-origin:right}100%{transform:scaleX(0);transform-origin:right}}
+.gridin{animation:gridin 1.6s ease-out both}
+@keyframes gridin{from{opacity:0;transform:scale(1.06)}}
+.gridrun{animation:gridrun 10s linear infinite}
+@keyframes gridrun{to{transform:translate(40px,40px)}}
+.draw{stroke-dasharray:1;animation:draw 2s cubic-bezier(.6,0,.2,1) both}
 @keyframes draw{from{stroke-dashoffset:1}}
-.grow{transform-box:fill-box;transform-origin:left;animation:grow 1.6s cubic-bezier(.6,0,.2,1) .9s both}
-@keyframes grow{from{transform:scaleX(0)}}
-.m{transform-box:fill-box;transform-origin:center;animation:m 1.4s cubic-bezier(.2,.8,.2,1) .5s both}
-@keyframes m{from{opacity:0;transform:scale(.86)}}
-.cut{animation:cut 1.2s cubic-bezier(.6,0,.2,1) 1.1s both}
-@keyframes cut{from{transform:translate(-110px,-110px)}}
-.sq{transform-box:fill-box;transform-origin:center;animation:pop .7s cubic-bezier(.3,1.6,.5,1) 1.8s both,beat 3.2s ease-in-out 2.6s infinite}
-@keyframes pop{from{transform:scale(0)}}
-@keyframes beat{50%{transform:scale(.82)}}
-.orbit{transform-origin:960px 300px;animation:spin 16s linear infinite}
-.orbit2{transform-origin:960px 300px;animation:spin 28s linear infinite reverse}
+.outline{stroke-dasharray:1;animation:draw 1.8s cubic-bezier(.65,0,.35,1) .1s both,fadeline .8s ease 1.9s both}
+@keyframes fadeline{to{stroke-opacity:.0}}
+.fill{animation:fill .9s ease 1.4s both}
+@keyframes fill{from{opacity:0}}
+.slash{stroke-dasharray:1;animation:slash .9s cubic-bezier(.7,0,.2,1) 1.9s both}
+@keyframes slash{0%{stroke-dashoffset:1;opacity:1}60%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+.cut{animation:cut .8s cubic-bezier(.7,0,.2,1) 2.2s both}
+@keyframes cut{from{transform:translate(-120px,-120px)}}
+.sq{transform-box:fill-box;transform-origin:center;animation:drop .9s cubic-bezier(.3,1.7,.5,1) 2.5s both,beat 3s ease-in-out 3.6s infinite}
+@keyframes drop{from{opacity:0;transform:translateY(-60px) rotate(-90deg) scale(.2)}}
+@keyframes beat{50%{transform:scale(.8)}}
+.wave{transform-box:fill-box;transform-origin:center;opacity:0;animation:wave 3s cubic-bezier(.2,.6,.3,1) 2.9s infinite}
+@keyframes wave{0%{opacity:.9;transform:scale(1)}100%{opacity:0;transform:scale(7)}}
+.sweep{animation:sweep 5s cubic-bezier(.5,0,.3,1) 3.2s infinite}
+@keyframes sweep{0%{transform:translateX(-80px)}40%,100%{transform:translateX(220px)}}
+.float{animation:float 8s ease-in-out 3s infinite}
+@keyframes float{50%{transform:translateY(-8px)}}
+.drift{animation:drift 8s ease-in-out 3s infinite}
+@keyframes drift{50%{transform:translate(6px,5px)}}
+.spin{transform-origin:960px 300px;animation:spin 18s linear infinite}
+.spinr{transform-origin:960px 300px;animation:spin 30s linear infinite reverse}
+.spinf{transform-origin:960px 300px;animation:spin 9s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
+.pt{opacity:.5;animation:rise linear infinite}
+@keyframes rise{0%{opacity:0;transform:translateY(0)}15%{opacity:.9}85%{opacity:.6}100%{opacity:0;transform:translateY(-560px)}}
+.scan{opacity:0;animation:scan 7s linear 3s infinite}
+@keyframes scan{0%{opacity:0;transform:translateY(0)}8%{opacity:1}35%{opacity:1;transform:translateY(620px)}36%,100%{opacity:0;transform:translateY(620px)}}
 .glow{animation:glow 5s ease-in-out infinite}
-@keyframes glow{50%{opacity:.35}}
+@keyframes glow{50%{opacity:.4}}
 .w{opacity:0;animation:word 9s ease both infinite}
 .w1{opacity:1}
-@keyframes word{0%{opacity:0;transform:translateY(14px)}5%,30%{opacity:1;transform:none}35%,100%{opacity:0;transform:translateY(-14px)}}
+@keyframes word{0%{opacity:0;transform:translateY(16px)}5%,30%{opacity:1;transform:none}35%,100%{opacity:0;transform:translateY(-16px)}}
 .ping{transform-box:fill-box;transform-origin:center;animation:ping 2s ease-out infinite}
 @keyframes ping{from{opacity:.9;transform:scale(1)}to{opacity:0;transform:scale(3.2)}}
 .nudge{animation:nudge 2.4s ease-in-out 2.5s infinite}
@@ -91,19 +121,30 @@ def hero(t):
 """
     words = ["Sites institucionais.", "Landing pages.", "Produtos digitais."]
     cycle = "".join(
-        f'<text class="w{" w1" if i == 0 else ""}" style="animation-delay:{1.6 + i * 3}s" x="52" y="436" font-size="24" fill="{t["mute"]}">{w}</text>'
+        f'<text class="w{" w1" if i == 0 else ""}" style="animation-delay:{2.2 + i * 3}s" x="52" y="436" font-size="24" fill="{t["mute"]}">{w}</text>'
         for i, w in enumerate(words))
+
+    def line(y, delay, content, width):
+        return (f'<text class="show" style="animation-delay:{delay + .45}s" x="46" y="{y}" font-size="108" font-weight="700" letter-spacing="-5" fill="{t["ink"]}">{content}</text>'
+                f'<rect class="bar" style="animation-delay:{delay}s" x="44" y="{y - 86}" width="{width}" height="100" fill="{t["accent"]}"/>')
+
     body = f"""<defs>
 <pattern id="g" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" stroke="{t['grid']}"/></pattern>
-<radialGradient id="fade" cx="960" cy="300" r="420" gradientUnits="userSpaceOnUse"><stop stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+<radialGradient id="fade" cx="960" cy="300" r="440" gradientUnits="userSpaceOnUse"><stop stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
 <mask id="gm"><rect width="1200" height="620" fill="url(#fade)"/></mask>
-<radialGradient id="lime" cx="960" cy="300" r="260" gradientUnits="userSpaceOnUse"><stop stop-color="{t['accent']}" stop-opacity="{t['glow']}"/><stop offset="1" stop-color="{t['accent']}" stop-opacity="0"/></radialGradient>
+<radialGradient id="lime" cx="960" cy="300" r="270" gradientUnits="userSpaceOnUse"><stop stop-color="{t['accent']}" stop-opacity="{t['glow']}"/><stop offset="1" stop-color="{t['accent']}" stop-opacity="0"/></radialGradient>
+<linearGradient id="sw" x1="0" x2="1"><stop stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<linearGradient id="sl" x1="720" x2="1200" gradientUnits="userSpaceOnUse"><stop stop-color="{t['accent']}" stop-opacity="0"/><stop offset=".5" stop-color="{t['accent']}"/><stop offset="1" stop-color="{t['accent']}" stop-opacity="0"/></linearGradient>
 <clipPath id="card"><rect width="1200" height="620" rx="20"/></clipPath>
+<clipPath id="mb"><rect width="100" height="100"/></clipPath>
+<clipPath id="ms"><path d="{M_PATH}"/></clipPath>
 </defs>
 <g clip-path="url(#card)">
 <rect width="1200" height="620" fill="{t['bg']}"/>
-<rect width="1200" height="620" fill="url(#g)" mask="url(#gm)"/>
-<circle class="glow" cx="960" cy="300" r="260" fill="url(#lime)"/>
+<g mask="url(#gm)"><g class="gridin"><rect class="gridrun" x="-40" y="-40" width="1280" height="700" fill="url(#g)"/></g></g>
+<circle class="glow" cx="960" cy="300" r="270" fill="url(#lime)"/>
+<g>{dots}</g>
+<rect class="scan" x="720" y="-2" width="480" height="2" fill="url(#sl)"/>
 </g>
 <rect x=".5" y=".5" width="1199" height="619" rx="19.5" stroke="{t['line']}"/>
 
@@ -111,39 +152,44 @@ def hero(t):
 <rect x="52" y="58" width="10" height="10" fill="{t['accent']}"/>
 <text class="mono" x="76" y="68" font-size="17" fill="{t['mute']}">mmojena / criador e fundador</text>
 </g>
-<text class="up" style="animation-delay:.25s" x="46" y="214" font-size="108" font-weight="700" letter-spacing="-5" fill="{t['ink']}">Miguel</text>
-<text class="up" style="animation-delay:.4s" x="46" y="318" font-size="108" font-weight="700" letter-spacing="-5" fill="{t['ink']}">Mojena<tspan fill="{t['accent_ink']}">.</tspan></text>
-<text class="up" style="animation-delay:.6s" x="52" y="386" font-size="34" letter-spacing="-.6" fill="{t['ink']}">Ideias que ganham forma.</text>
+{line(214, .25, "Miguel", 350)}
+{line(318, .5, f'Mojena<tspan fill="{t["accent_ink"]}">.</tspan>', 420)}
+<text class="up" style="animation-delay:1.1s" x="52" y="386" font-size="34" letter-spacing="-.6" fill="{t['ink']}">Ideias que ganham forma.</text>
 {cycle}
-<path class="grow" d="M52 490H660" stroke="{t['line']}"/>
-<g class="up" style="animation-delay:1.2s">
+<path class="draw" pathLength="1" d="M52 490H660" stroke="{t['line']}" style="animation-delay:1.2s"/>
+<g class="up" style="animation-delay:1.5s">
 <circle cx="60" cy="535" r="5" fill="{t['accent']}"/><circle class="ping" cx="60" cy="535" r="5" fill="{t['accent']}"/>
 <text class="mono" x="78" y="541" font-size="16" fill="{t['mute']}">disponível para novos projetos</text>
 <text x="660" y="541" font-size="18" font-weight="600" text-anchor="end" fill="{t['accent_ink']}">Conheça meu trabalho <tspan class="nudge">↗</tspan></text>
 </g>
 
-<g stroke="{t['line']}" stroke-width="1.2">
+<g class="drift"><g stroke="{t['line']}" stroke-width="1.2">
 <path class="draw" pathLength="1" d="M790 0V620M1130 0V620" style="animation-delay:.2s"/>
 <path class="draw" pathLength="1" d="M720 130H1200M720 470H1200" style="animation-delay:.35s"/>
 <path class="draw" pathLength="1" d="M800 140L1120 460M800 460L1120 140" style="animation-delay:.5s"/>
 <circle class="draw" pathLength="1" cx="960" cy="300" r="200" transform="rotate(-90 960 300)" style="animation-delay:.3s"/>
-<circle class="draw" pathLength="1" cx="960" cy="300" r="250" stroke-dasharray="1" opacity=".6" transform="rotate(90 960 300)" style="animation-delay:.6s"/>
 </g>
+<g class="spinr"><circle cx="960" cy="300" r="250" stroke="{t['line']}" stroke-dasharray="2 10" opacity=".9"/><circle cx="960" cy="550" r="3.5" fill="{t['mute']}"/><circle cx="710" cy="300" r="2.5" fill="{t['mute']}"/></g>
 <g stroke="{t['mute']}" class="up" style="animation-delay:1s"><path d="M946 86H974M960 72V100M946 514H974M960 500V528"/></g>
-<g transform="translate(820 160) scale(2.8)">
-<g class="m"><path d="{M_PATH}" fill="{t['ink']}"/></g>
-<clipPath id="mb"><rect width="100" height="100"/></clipPath>
-<g clip-path="url(#mb)"><path class="cut" d="{M_CUT}" fill="{t['cut']}"/></g>
-<rect class="sq" x="80" y="80" width="20" height="20" fill="{t['accent']}"/>
-</g>
-<g class="orbit"><circle cx="960" cy="100" r="5" fill="{t['accent']}"/><circle cx="960" cy="100" r="12" stroke="{t['accent']}" opacity=".4"/></g>
-<g class="orbit2"><circle cx="960" cy="550" r="3.5" fill="{t['mute']}"/></g>
 <circle cx="790" cy="130" r="4" fill="{t['accent']}" class="up" style="animation-delay:1.4s"/>
 <circle cx="1130" cy="470" r="4" fill="{t['accent']}" class="up" style="animation-delay:1.5s"/>
+</g>
+<g class="spin"><circle cx="960" cy="100" r="5" fill="{t['accent']}"/><circle cx="960" cy="100" r="13" stroke="{t['accent']}" opacity=".45"/></g>
+<g class="spinf"><path d="M960 125A175 175 0 0 1 1111 213" stroke="{t['accent']}" stroke-width="2" stroke-linecap="round" opacity=".7"/></g>
+
+<g class="float"><g transform="translate(820 160) scale(2.8)">
+<path class="outline" pathLength="1" d="{M_PATH}" stroke="{t['accent']}" stroke-width="2" vector-effect="non-scaling-stroke" stroke-linejoin="round"/>
+<path class="fill" d="{M_PATH}" fill="{t['ink']}"/>
+<g clip-path="url(#mb)"><path class="cut" d="{M_CUT}" fill="{t['cut']}"/></g>
+<path class="slash" pathLength="1" d="M0 0L100 100" stroke="{t['accent']}" stroke-width="3" vector-effect="non-scaling-stroke"/>
+<g clip-path="url(#ms)"><g transform="skewX(-20)"><rect class="sweep" x="-40" y="-10" width="36" height="120" fill="url(#sw)"/></g></g>
+<rect class="wave" x="80" y="80" width="20" height="20" stroke="{t['accent']}" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
+<rect class="sq" x="80" y="80" width="20" height="20" fill="{t['accent']}"/>
+</g></g>
 """
     return svg(1200, 620, "Miguel Mojena — criador e fundador",
                "Ideias que ganham forma. Sites institucionais, landing pages e produtos digitais. "
-               "Monograma M em construção, com um ponto de luz em órbita.", css, body)
+               "Monograma M que se desenha em traços e ganha preenchimento, com órbitas e partículas em movimento.", css, body)
 
 
 def marquee(t):
@@ -242,7 +288,7 @@ def card(t, p, n):
 <g clip-path="url(#sc)">
 <g class="{'pan' if pan else ''}"><image href="{src}" x="{sx}" y="{sy}" width="{sw}" height="{h:.0f}" preserveAspectRatio="xMidYMin slice"/></g>
 <rect x="{sx}" y="{sy}" width="{sw}" height="{sh}" fill="url(#vg)"/>
-<rect class="shine" x="{sx}" y="{sy}" width="260" height="{sh}" fill="url(#sg)" transform="skewX(-12)"/>
+<g transform="skewX(-12)"><rect class="shine" x="{sx}" y="{sy}" width="260" height="{sh}" fill="url(#sg)"/></g>
 </g>
 </g>
 {phone}"""
